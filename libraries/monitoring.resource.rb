@@ -57,11 +57,6 @@ class Chef
         @action = :create
         @allowed_actions = [ :create ]
 
-        # Verify run_list is okay
-        runlistc = RunListModifier.new(node.run_list)
-        runlistc.unshift("recipe[monitoring::first]")
-        runlistc.append("recipe[monitoring::last]")
-
         # Which schedule
         @schedule = Chef::Resource::Monitoring::Schedule::FifteenMinutes.new
 

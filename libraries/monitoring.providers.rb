@@ -28,24 +28,23 @@ class Chef
       include Chef::Mixin::LanguageIncludeAttribute
 
       def load_current_resource
+        # No real need for current_resource state, we're just putting everything
+        # again in couch db
+
         @current_resource = Chef::Resource::Monitoring.new(@new_resource.name)
-
-        @node = node
-
-        include_attribute 'monitoring'
-
-        # Try to load current state from attributes
-        node[:monitoring][:elements].each do |element|
-          if element.name == @new_resource.name
-            @current_resource.from_hash(element)
-            break
-          end
-        end
-
         @current_resource
       end
 
       def action_create
+        @node = node
+
+        include_attribute 'monitoring'
+
+        # Verify run_list is okay
+        runlistc = RunListModifier.new(node.run_list)
+        runlistc.unshift("recipe[monitoring::first]")
+        runlistc.append("recipe[monitoring::last]")
+
         # Register element
         @new_resource.save!
       end
