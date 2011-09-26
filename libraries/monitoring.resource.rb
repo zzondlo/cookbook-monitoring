@@ -99,6 +99,8 @@ class Chef
 
         content[:status] = @status if @status
 
+        content[:name] = @name
+
         content
       end
 
