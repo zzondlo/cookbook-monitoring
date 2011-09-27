@@ -104,12 +104,16 @@ class Chef
         content
       end
 
-      def scheme(arg)
-        begin
-          URI.parse(arg)
-          @scheme = arg
-        rescue URI::InvalidURIError
-          raise ArgumentError, "scheme doesn't look like URI"
+      def scheme(arg=nil)
+        if arg
+          begin
+            URI.parse(arg)
+            @scheme = arg
+          rescue URI::InvalidURIError
+            raise ArgumentError, "scheme doesn't look like URI"
+          end
+        else
+          @scheme
         end
       end
 
@@ -138,6 +142,7 @@ class Chef
       end
 
       def external(arg=nil)
+        
         set_or_return(
           :external,
           arg,
@@ -153,12 +158,16 @@ class Chef
         )
       end
 
-      def external_uri(arg)
-        begin
-          URI.parse(arg)
-          @scheme = arg
-        rescue URI::InvalidURIError
-          raise ArgumentError, "scheme doesn't look like URI"
+      def external_uri(arg=nil)
+        if arg
+          begin
+            URI.parse(arg)
+            @external_uri = arg
+          rescue URI::InvalidURIError
+            raise ArgumentError, "scheme doesn't look like URI"
+          end
+        else
+          @external_uri
         end
       end
 
