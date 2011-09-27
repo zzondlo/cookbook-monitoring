@@ -23,7 +23,7 @@ and use it in your recipe, eg:
 = LICENSE & AUTHOR:
 
 Author:: Arthur Gautier (<aga@zenexity.com>)
-Copyright:: 2011, Zenixity
+Copyright:: 2011, Zenexity
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
