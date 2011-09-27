@@ -14,7 +14,7 @@ include monitoring in your cookbook:
 and use it in your recipe, eg:
 
   # in recipes/default.rb
-  monitoring-ssh "#{node.fqdn}"
+  monitoring_ssh "#{node.fqdn}"
 
 == Defines:
 
