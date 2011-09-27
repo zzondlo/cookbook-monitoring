@@ -20,6 +20,11 @@
 
 require 'chef/resource'
 
+# Hack so i can get a Boolean data type
+module Boolean; end
+class TrueClass; include Boolean; end
+class FalseClass; include Boolean; end
+
 require 'uri'
 
 class Chef
